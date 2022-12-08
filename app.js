@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-// const router = require("./routes/ticketRoutes");
+const ticketRouter = require("./routes/ticketRoutes");
 
 app.get("/", (req, res) => {
   res.send("TEST SUCCESS");
@@ -8,6 +8,6 @@ app.get("/", (req, res) => {
 
 app.use(express.json());
 
-// app.use("/api/v1/tickets", router);
+app.use("/api/v1/tickets", ticketRouter);
 
 exports.app = app;
