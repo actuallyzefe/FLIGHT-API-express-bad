@@ -1,7 +1,7 @@
 const express = require("express");
-const { getAllTickets } = require("../controllers/ticketController");
+const { getAllFlights } = require("../controllers/ticketController");
 const router = express.Router();
 
-router.route("/").get(getAllTickets);
+router.route("/").get(getAllFlights);
 
 module.exports = router;
