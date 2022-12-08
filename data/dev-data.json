@@ -1,14 +1,18 @@
 [
   {
-    "name": "TEST FLIGHT 1"
+    "name": "USA-MEXICO",
+    "price": 450
   },
   {
-    "name": "TEST FLIGHT 2"
+    "name": "CANADA-GERMANY",
+    "price": 450
   },
   {
-    "name": "TEST FLIGHT 3"
+    "name": "RUSSIA-INDIA",
+    "price": 450
   },
   {
-    "name": "TEST FLIGHT 4"
+    "name": "TURKEY-SPAIN",
+    "price": 450
   }
 ]

@@ -8,6 +8,6 @@ app.get("/", (req, res) => {
 
 app.use(express.json());
 
-app.use("/api/v1/tickets", ticketRouter);
+app.use("/api/v1/flights", ticketRouter);
 app;
 exports.app = app;

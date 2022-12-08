@@ -5,6 +5,10 @@ const flightSchema = new mongoose.Schema({
     type: String,
     required: [true, "A flight Must have name"],
   },
+  price: {
+    type: Number,
+    required: [true, "A flight Must have PRICE"],
+  },
   date: Date,
 });
 

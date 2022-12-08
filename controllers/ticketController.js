@@ -17,18 +17,3 @@ exports.getAllFlights = async (req, res) => {
     });
   }
 };
-
-exports.createFlight = async (req, res) => {
-  try {
-    const newFlight = await Flight.create(req.body);
-    res.status(201).json({
-      status: "success",
-      data: newFlight,
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: "Error",
-      message: err,
-    });
-  }
-};
