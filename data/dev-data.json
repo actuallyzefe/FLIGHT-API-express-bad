@@ -1,3 +1,14 @@
-{
-  "name": "TESTING FLIGHT"
-}
+[
+  {
+    "name": "TEST FLIGHT 1"
+  },
+  {
+    "name": "TEST FLIGHT 2"
+  },
+  {
+    "name": "TEST FLIGHT 3"
+  },
+  {
+    "name": "TEST FLIGHT 4"
+  }
+]
