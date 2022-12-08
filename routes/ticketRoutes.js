@@ -1,9 +1,8 @@
 const express = require("express");
+const { getAllTickets } = require("../controllers/ticketController");
 const app = express();
 const router = express.Router();
 
-router.route("/").get((req, res) => {
-  res.send("MIDDLEWARE SUCCESS");
-});
+router.route("/").get(getAllTickets);
 
 module.exports = router;
