@@ -11,7 +11,10 @@ exports.getAllFlights = async (req, res) => {
       data: tickets,
     });
   } catch (err) {
-    console.log(err);
+    res.status(400).json({
+      status: "Error",
+      message: err,
+    });
   }
 };
 
