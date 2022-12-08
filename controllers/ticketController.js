@@ -1,10 +1,10 @@
 const fs = require("fs");
 const Flight = require("../models/ticketModel");
-const tickets = JSON.parse(fs.readFileSync("./data/dev-data.json"));
+const ticketsData = JSON.parse(fs.readFileSync("./data/dev-data.json"));
 
 exports.getAllFlights = async (req, res) => {
   try {
-    const tickets1 = await Flight.find();
+    const tickets = await Flight.find();
     res.status(200).json({
       status: "Success",
       results: tickets.length,
@@ -12,5 +12,20 @@ exports.getAllFlights = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
+  }
+};
+
+exports.createFlight = async (req, res) => {
+  try {
+    const newFlight = await Flight.create(req.body);
+    res.status(201).json({
+      status: "success",
+      data: newFlight,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Error",
+      message: err,
+    });
   }
 };
