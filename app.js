@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-
 const router = require("./routes/ticketRoutes");
 
 app.get("/", (req, res) => {
