@@ -1,6 +1,5 @@
 const fs = require("fs");
 const Flight = require("../models/ticketModel");
-const ticketsData = JSON.parse(fs.readFileSync("./data/dev-data.json"));
 
 exports.getAllFlights = async (req, res) => {
   try {
