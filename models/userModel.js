@@ -35,6 +35,9 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// SECURITY
+// HASHING PASSWORDS
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
