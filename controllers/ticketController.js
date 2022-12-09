@@ -1,4 +1,3 @@
-const fs = require("fs");
 const Flight = require("../models/ticketModel");
 
 exports.getAllFlights = async (req, res) => {
