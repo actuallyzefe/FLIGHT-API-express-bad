@@ -3,6 +3,13 @@ const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 
+// Creating Tokens
+const signToken = (id) => {
+  return jwt.sign({ id: id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+};
+
 // Sign Up
 exports.signUp = async (req, res) => {
   try {
