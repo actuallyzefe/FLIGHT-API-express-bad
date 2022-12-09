@@ -2,41 +2,49 @@
   {
     "name": "Sude Doğan",
     "adult": "true",
-    "gender": "woman"
+    "gender": "woman",
+    "email": "sudedogan18022003@gmail.com"
   },
   {
     "name": "Sude Elçi",
     "adult": "false",
-    "gender": "woman"
+    "gender": "woman",
+    "email": "sudeelci18022003@gmail.com"
   },
   {
     "name": "Efe Karakanlı",
     "adult": "true",
-    "gender": "male"
+    "gender": "male",
+    "email": "zefek10@gmail.com"
   },
   {
-    "name": "Deniz Orallı",
+    "name": "Emre Ata",
     "adult": "false",
-    "gender": "woman"
+    "gender": "woman",
+    "email": "eata@gmail.com"
   },
   {
     "name": "Emre Demirel",
     "adult": "false",
-    "gender": "male"
+    "gender": "male",
+    "email": "emre@gmail.com"
   },
   {
     "name": "Baran Keke",
     "adult": "true",
-    "gender": "male"
+    "gender": "male",
+    "email": "baran@gmail.com"
   },
   {
     "name": "Mustafa Gönder",
     "adult": "true",
-    "gender": "male"
+    "gender": "male",
+    "email": "mustafa@gmail.com"
   },
   {
     "name": "Ahu Elçi",
     "adult": "true",
-    "gender": "woman"
+    "gender": "woman",
+    "email": "ahu@gmail.com"
   }
 ]

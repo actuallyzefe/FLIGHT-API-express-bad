@@ -14,3 +14,12 @@ exports.getAllUsers = async (req, res) => {
     });
   }
 };
+
+exports.createUser = async (req, res) => {
+  res.status(404).json({
+    status: "Error",
+    message: "This has not implemented",
+  });
+};
+
+exports.deleteUser = async (req, res) => {};

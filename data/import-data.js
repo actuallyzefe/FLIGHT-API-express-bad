@@ -22,7 +22,7 @@ const users = JSON.parse(fs.readFileSync(`./data/user-data.json`, "utf-8"));
 const importData = async () => {
   try {
     await Flight.create(flights);
-    await User.create(users);
+    // await User.create(users);
     console.log("DATA SUCCESSFULLY IMPORTED");
   } catch (err) {
     console.log(err);
