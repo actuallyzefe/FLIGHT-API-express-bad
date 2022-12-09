@@ -3,6 +3,13 @@ const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 
+// Create Token
+const signToken = (id) => {
+  return jwt.sign({ id: id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+};
+
 // Sign Up
 exports.signUp = async (req, res) => {
   try {
@@ -13,15 +20,16 @@ exports.signUp = async (req, res) => {
       passwordConfirm: req.body.passwordConfirm,
       gender: req.body.gender,
     });
+    const token = signToken(newUser._id);
+
+    // newUser.password = undefined;
 
     res.status(201).json({
       status: "Success",
+      token: token,
       data: newUser,
     });
   } catch (err) {
-    res.status(400).json({
-      status: "Error",
-      message: err,
-    });
+    console.log(err);
   }
 };
