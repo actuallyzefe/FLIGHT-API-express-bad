@@ -4,6 +4,7 @@ const User = require('../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const sendEmail = require('./../utils/mail');
+const crypto = require('crypto');
 // Create Token
 const signToken = (id) => {
   return jwt.sign({ id: id }, process.env.JWT_SECRET, {
@@ -134,5 +135,32 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     });
   }
 });
+exports.resetPassword = async (req, res, next) => {
+  // 1) Get user based on the token
+  const hashedToken = crypto
+    .createHash('sha256')
+    .update(req.params.resetToken)
+    .digest('hex');
+  const user = await User.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetExpires: { $gt: Date.now() },
+  });
+  // 2) If token has not expired, and there is user, set the new password
+  if (!user) {
+    res.status(401).json({
+      status: 'Fail',
+      msg: 'NO USER FOUND',
+    });
+  }
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+  user.passwordResetExpires = undefined;
+  user.passwordResetToken = undefined;
+  await user.save();
+
+  // 3) Update changedPasswordAt property for the user => userModel middleware
+  // 4) Log the user in, send JWT
+  res.send('SUCCESS');
+};
 
 // Reset Password (forgot olmadan)
