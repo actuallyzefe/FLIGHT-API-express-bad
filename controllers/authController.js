@@ -160,7 +160,10 @@ exports.resetPassword = async (req, res, next) => {
 
   // 3) Update changedPasswordAt property for the user => userModel middleware
   // 4) Log the user in, send JWT
-  res.send('SUCCESS');
+  res.status(200).json({
+    status: 'Success',
+    token: hashedToken,
+  });
 };
 
 // Reset Password (forgot olmadan)
