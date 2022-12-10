@@ -8,7 +8,6 @@ const helmet = require("helmet");
 const xss = require("xss-clean");
 const rateLimit = require("express-rate-limit"); // AYNI IPDEN COK FAZLA REQUEST GELIRSE BU REQUESTLERI BLOCKLAYACAK
 const mongoSanitize = require("express-mongo-sanitize");
-
 const hpp = require("hpp");
 
 app.get("/", (req, res) => {
