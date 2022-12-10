@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 const User = require("../models/userModel");
 const catchAsync = require("./../utils/catchAsync");
-const appError = require("./../utils/appError");
+const AppError = require("./../utils/appError");
 
 // Create Token
 const signToken = (id) => {
@@ -44,17 +44,17 @@ exports.login = async (req, res, next) => {
   const { email, password } = req.body;
   // 1) Check if email and password exists
   if (!email || !password) {
-    return next(new appError("No user found with that data"), 401);
+    return next(new AppError("No user found with that data"), 401);
   }
   // 2) Check if user exists and password is correct
   const user = await User.findOne({ email }).select("+password");
   if (!user) {
-    return next(new appError("Incorrect email or password"), 401);
+    return next(new AppError("Incorrect email or password"), 401);
   }
   // const correct = user.correctPassword(password, user.password);
 
   if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(new appError("Incorrect email or password"), 401);
+    return next(new AppError("Incorrect email or password"), 401);
   }
   // 3) If everything ok, send token to client
   const token = signToken(user._id);
@@ -76,7 +76,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
   if (!token) {
     return next(
-      new appError("You are not Logged in. Log in to buy tickets.", 401)
+      new AppError("You are not Logged in. Log in to buy tickets.", 401)
     );
   }
   //2) Verification token
@@ -85,11 +85,11 @@ exports.protect = catchAsync(async (req, res, next) => {
   //3) Check if user exists
   const currentUser = await User.findById(decoded.id);
   if (!currentUser) {
-    return next(new appError("This user no longer exists", 401));
+    return next(new AppError("This user no longer exists", 401));
   }
   //4) Check if user changed password after the token was issued
   if (currentUser.changedPasswordAfter(decoded.iat)) {
-    return next(new appError("USER RECENTLY CHANGED PASSWORD"));
+    return next(new AppError("USER RECENTLY CHANGED PASSWORD"));
   }
   // GRANT ACCESS TO PROTECTED ROUTES
   req.user = currentUser;
@@ -101,13 +101,13 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   // 1) Get user based on POSTed email
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
-    return next(new appError("No user with that email", 401));
+    return next(new AppError("No user with that email", 401));
   }
   // 2) Generate the random reset token
+  const randomToken = user.createPasswordResetToken();
+  await user.save({ validateBeforeSave: false });
   // 3) Send it to user's email
-  res.status(200).json({
-    status: "Success",
-  });
+  res.send("SUCCESS");
 });
 
 // Reset Password (forgot olmadan)
