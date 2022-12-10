@@ -127,6 +127,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save({ validateBeforeSave: false });
+
     res.status(401).json({
       status: 'Fail',
       msg: 'AN ERROR Happened ',
