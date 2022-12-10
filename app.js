@@ -37,4 +37,10 @@ app.use(
     whitelist: "duration",
   })
 );
+// TEST MIDDLEWARES
+// app.use((req, res, next) => {
+//   const mes = (req.requestTime = new Date().toISOString());
+//   next();
+// });
+
 exports.app = app;

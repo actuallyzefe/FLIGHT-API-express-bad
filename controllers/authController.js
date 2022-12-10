@@ -32,7 +32,10 @@ exports.signUp = async (req, res) => {
       data: newUser,
     });
   } catch (err) {
-    console.log(err);
+    res.status(401).json({
+      status: "Fail",
+      message: err,
+    });
   }
 };
 
@@ -59,3 +62,30 @@ exports.login = catchAsync(async (req, res, next) => {
     token,
   });
 });
+
+// Protected Routes
+exports.protect = catchAsync(async (req, res, next) => {
+  //1) Getting token and check if it exists
+  let token;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    token = req.headers.authorization.split(" ")[1];
+  }
+  if (!token) {
+    return next(
+      new appError("You are not Logged in. Log in to buy tickets.", 401)
+    );
+  }
+  //2) Verification token
+
+  //3) Check if user exists
+  //4) Check if user changed password after the token was issued
+
+  // GRANT ACCESS TO PROTECTED ROUTES
+  // req.user = currentUser;
+  next();
+});
+
+exports.resetPassword = catchAsync(async (req, res, next) => {});
