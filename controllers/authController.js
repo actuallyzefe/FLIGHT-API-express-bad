@@ -43,7 +43,7 @@ exports.login = async (req, res, next) => {
   const { email, password } = req.body;
   // 1) Check if email and password exists
   if (!email || !password) {
-    return next(new appError("BADFSDFB"), 401);
+    return next(new appError("No user found with that data"), 401);
   }
   // 2) Check if user exists and password is correct
   const user = await User.findOne({ email }).select("+password");
