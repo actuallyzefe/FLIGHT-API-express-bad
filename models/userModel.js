@@ -42,6 +42,7 @@ const userSchema = new mongoose.Schema({
 // SECURITY
 // HASHING PASSWORDS
 userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12);
   this.passwordConfirm = undefined;
   next();
@@ -64,6 +65,8 @@ userSchema.methods.changedPasswordAfter = function (JWTTimeStamp) {
   }
   return false; // DEFAULT OLARAK FALSE RETURN ETTIRIDK
 };
+
+// Generating Random Reset Token
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
