@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
-// const crypto = require("crypto");
-// const bcrypt = require("bcrypt");
+const { promisify } = require("util");
 const User = require("../models/userModel");
 const catchAsync = require("./../utils/catchAsync");
 const appError = require("./../utils/appError");
@@ -40,7 +39,7 @@ exports.signUp = async (req, res) => {
 };
 
 // Login
-exports.login = catchAsync(async (req, res, next) => {
+exports.login = async (req, res, next) => {
   const { email, password } = req.body;
   // 1) Check if email and password exists
   if (!email || !password) {
@@ -52,6 +51,7 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new appError("Incorrect email or password"), 401);
   }
   // const correct = user.correctPassword(password, user.password);
+
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new appError("Incorrect email or password"), 401);
   }
@@ -61,7 +61,7 @@ exports.login = catchAsync(async (req, res, next) => {
     status: "Success",
     token,
   });
-});
+};
 
 // Protected Routes
 exports.protect = catchAsync(async (req, res, next) => {
@@ -79,8 +79,13 @@ exports.protect = catchAsync(async (req, res, next) => {
     );
   }
   //2) Verification token
-
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  console.log(decoded);
   //3) Check if user exists
+  const currentUser = await User.findById(decoded.id);
+  if (!currentUser) {
+    return next(new appError("This user no longer exists", 401));
+  }
   //4) Check if user changed password after the token was issued
 
   // GRANT ACCESS TO PROTECTED ROUTES
