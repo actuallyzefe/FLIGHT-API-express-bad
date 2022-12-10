@@ -19,6 +19,7 @@ exports.signUp = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       passwordConfirm: req.body.passwordConfirm,
+      passwordChangedAt: req.body.passwordChangedAt,
       gender: req.body.gender,
     });
     const token = signToken(newUser._id);
@@ -87,9 +88,11 @@ exports.protect = catchAsync(async (req, res, next) => {
     return next(new appError("This user no longer exists", 401));
   }
   //4) Check if user changed password after the token was issued
-
+  if (currentUser.changedPasswordAfter(decoded.iat)) {
+    return next(new appError("USER RECENTLY CHANGED PASSWORD"));
+  }
   // GRANT ACCESS TO PROTECTED ROUTES
-  // req.user = currentUser;
+  req.user = currentUser;
   next();
 });
 

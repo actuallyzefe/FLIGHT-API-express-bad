@@ -34,6 +34,9 @@ const userSchema = new mongoose.Schema({
       message: "Passwords are not same.",
     },
   },
+  passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
 });
 
 // SECURITY
@@ -48,6 +51,19 @@ userSchema.methods.correctPassword = async function (canPass, userPass) {
   return await bcrypt.compare(canPass, userPass);
 };
 
+// Password Changed At
+userSchema.methods.changedPasswordAfter = function (JWTTimeStamp) {
+  if (this.passwordChangedAt) {
+    const changedTimeStamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    // eğer ki passwordChangedaT VARSA yani kullanıcnı şifresini değiştirmişse bu karşılaştırmayı yap eğer degıstırmemzıse return false
+    // console.log(changedTimeStamp, JWTTimeStamp);
+    return JWTTimeStamp < changedTimeStamp;
+  }
+  return false; // DEFAULT OLARAK FALSE RETURN ETTIRIDK
+};
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
