@@ -1,16 +1,25 @@
-const Flight = require("../models/ticketModel");
+const Flight = require('../models/ticketModel');
 
 exports.getAllFlights = async (req, res) => {
   try {
-    const tickets = await Flight.find();
+    const queryObj = { ...req.query };
+    // const eFields = ['page', 'sort', 'limit', 'fields'];
+    // eFields.forEach((el) => delete queryObj[el]);
+
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    const query = Flight.find(JSON.parse(queryStr));
+
+    const tickets = await query; // Burada await yapmasam paginate vessaire ekleyemezdim
+
     res.status(200).json({
-      status: "Success",
+      status: 'Success',
       results: tickets.length,
       data: tickets,
     });
   } catch (err) {
     res.status(400).json({
-      status: "Error",
+      status: 'Error',
       message: err,
     });
   }
