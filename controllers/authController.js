@@ -25,7 +25,7 @@ exports.signUp = async (req, res) => {
     });
     const token = signToken(newUser._id);
 
-    // newUser.password = undefined;
+    newUser.password = undefined;
 
     res.status(201).json({
       status: 'Success',
@@ -167,3 +167,10 @@ exports.resetPassword = async (req, res, next) => {
 };
 
 // Reset Password - Update Password
+exports.updatePassword = async (req, res, next) => {
+  const user = await User.findOne({ email: req.body.email });
+  res.json({
+    status: 'Success',
+    user: user,
+  });
+};
