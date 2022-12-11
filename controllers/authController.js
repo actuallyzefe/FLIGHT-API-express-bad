@@ -166,4 +166,4 @@ exports.resetPassword = async (req, res, next) => {
   });
 };
 
-// Reset Password (forgot olmadan)
+// Reset Password - Update Password
