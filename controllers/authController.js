@@ -168,9 +168,22 @@ exports.resetPassword = async (req, res, next) => {
 
 // Reset Password - Update Password
 exports.updatePassword = async (req, res, next) => {
-  const user = await User.findOne({ email: req.body.email });
+  // 1) Get user from collection
+  const user = await User.findOne({ email: req.body.email }).select(
+    '+password'
+  );
+  // 2) Check if POSTed current password is correct
+  if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
+    return next(new AppError('INCORRECT PASSWORD', 401));
+  }
+  // 3) If so, update password
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+  await user.save();
+  // 4) Log user in, send JWT
+  const token = signToken(user.id);
   res.json({
     status: 'Success',
-    user: user,
+    token: token,
   });
 };
