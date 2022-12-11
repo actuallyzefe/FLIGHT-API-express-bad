@@ -1,22 +1,22 @@
 [
   {
     "name": "USA-MEXICO",
-    "price": 450
+    "price": 250
   },
   {
     "name": "CANADA-GERMANY",
-    "price": 450
+    "price": 1250
   },
   {
     "name": "RUSSIA-INDIA",
-    "price": 450
+    "price": 760
   },
   {
     "name": "BELGIUM-FRANCE",
-    "price": 450
+    "price": 150
   },
   {
     "name": "TURKEY-SPAIN",
-    "price": 450
+    "price": 4000
   }
 ]
