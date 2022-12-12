@@ -1,37 +1,134 @@
 [
   {
     "name": "USA-MEXICO",
+    "price": 450,
+    "date": "2022-11-20",
+    "airline": "American Airlines"
+  },
+  {
+    "name": "USA-MEXICO",
+    "price": 350,
+    "date": "2022-10-15",
+    "airline": "American Airlines"
+  },
+  {
+    "name": "USA-MEXICO",
     "price": 250,
-    "date": "2022-11-20"
+    "date": "2022-11-23",
+    "airline": "Emirates"
+  },
+  {
+    "name": "USA-MEXICO",
+    "price": 650,
+    "date": "2022-11-18",
+    "airline": "Turkish Airlines"
   },
   {
     "name": "CANADA-GERMANY",
     "price": 1250,
-    "date": "2022-10-20"
+    "date": "2022-09-10",
+    "airline": "Turkish Airlines"
+  },
+  {
+    "name": "CANADA-GERMANY",
+    "price": 1350,
+    "date": "2022-10-20",
+    "airline": "Emirates"
+  },
+  {
+    "name": "CANADA-GERMANY",
+    "price": 850,
+    "date": "2022-11-02",
+    "airline": "Emirates"
+  },
+  {
+    "name": "CANADA-GERMANY",
+    "price": 1250,
+    "date": "2022-08-11",
+    "airline": "American Airlines"
   },
   {
     "name": "RUSSIA-INDIA",
-    "price": 760,
-    "date": "2022-09-20"
+    "price": 1760,
+    "date": "2022-09-20",
+    "airline": "Turkish Airlines"
+  },
+  {
+    "name": "RUSSIA-INDIA",
+    "price": 860,
+    "date": "2022-09-20",
+    "airline": "Turkish Airlines"
+  },
+  {
+    "name": "RUSSIA-INDIA",
+    "price": 960,
+    "date": "2022-09-20",
+    "airline": "Turkish Airlines"
+  },
+  {
+    "name": "RUSSIA-INDIA",
+    "price": 770,
+    "date": "2022-09-20",
+    "airline": "American Airlines"
+  },
+  {
+    "name": "RUSSIA-INDIA",
+    "price": 790,
+    "date": "2022-09-20",
+    "airline": "American Airlines"
   },
   {
     "name": "BELGIUM-FRANCE",
     "price": 150,
-    "date": "2022-10-20"
+    "date": "2022-10-20",
+    "airline": "Turkish Airlines"
   },
   {
     "name": "BELGIUM-FRANCE",
     "price": 350,
-    "date": "2022-8-20"
+    "date": "2022-8-20",
+    "airline": "Turkish Airlines"
   },
   {
     "name": "BELGIUM-FRANCE",
     "price": 450,
-    "date": "2022-12-20"
+    "date": "2022-12-20",
+    "airline": "Emirates"
+  },
+  {
+    "name": "TURKEY-SPAIN",
+    "price": 4330,
+    "date": "2022-08-20",
+    "airline": "Turkish Airlines"
   },
   {
     "name": "TURKEY-SPAIN",
     "price": 4000,
-    "date": "2022-08-20"
+    "date": "2022-08-20",
+    "airline": "American Airlines"
+  },
+  {
+    "name": "TURKEY-SPAIN",
+    "price": 4100,
+    "date": "2022-09-20",
+    "airline": "Turkish Airlines"
+  },
+  {
+    "name": "TURKEY-SPAIN",
+    "price": 4230,
+    "date": "2022-08-17",
+    "airline": "Turkish Airlines"
+  },
+  {
+    "name": "TURKEY-SPAIN",
+    "price": 3440,
+    "date": "2022-11-10",
+    "airline": "Turkish Airlines"
+  },
+  {
+    "name": "TURKEY-SPAIN",
+    "price": 3700,
+    "date": "2022-08-20",
+    "airline": "Turkish Airlines"
   }
 ]
