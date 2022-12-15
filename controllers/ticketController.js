@@ -21,3 +21,12 @@ exports.getAllFlights = async (req, res) => {
     });
   }
 };
+
+exports.getSingleFlight = async (req, res) => {
+  const flight = await Flight.findById(req.params.id);
+
+  res.status(200).json({
+    stauts: 'Success',
+    flight,
+  });
+};
