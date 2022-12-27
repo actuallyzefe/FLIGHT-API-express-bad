@@ -3,6 +3,7 @@ const app = express();
 // Routes
 const flightRouter = require('./routes/flightRoutes');
 const userRouter = require('./routes/userRoutes');
+const ticketRouter = require('./routes/ticketRoutes');
 // Security
 const helmet = require('helmet');
 const xss = require('xss-clean');
@@ -18,6 +19,17 @@ app.use(express.json());
 
 app.use('/api/v1/flights', flightRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/tickets', ticketRouter);
+app.get('/accepted', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+  });
+});
+app.get('/cancelled', (req, res) => {
+  res.status(200).json({
+    status: 'cancelled',
+  });
+});
 
 // SECURITY
 app.use(helmet());
