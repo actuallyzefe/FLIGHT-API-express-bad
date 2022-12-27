@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 // Routes
-const ticketRouter = require('./routes/ticketRoutes');
+const flightRouter = require('./routes/flightRoutes');
 const userRouter = require('./routes/userRoutes');
 // Security
 const helmet = require('helmet');
@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 
 app.use(express.json());
 
-app.use('/api/v1/flights', ticketRouter);
+app.use('/api/v1/flights', flightRouter);
 app.use('/api/v1/users', userRouter);
 
 // SECURITY

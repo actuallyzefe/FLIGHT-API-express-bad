@@ -2,8 +2,8 @@ const express = require('express');
 const {
   getAllFlights,
   getSingleFlight,
-} = require('../controllers/ticketController');
-const authController = require('./../controllers/authController');
+} = require('../controllers/flightController');
+const authController = require('../controllers/authController');
 const router = express.Router();
 
 router.route('/').get(getAllFlights);
