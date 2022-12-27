@@ -5,8 +5,11 @@ const AppError = require('./../utils/appError');
 
 // CHECKOUT
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
+  // Get current flight
   const flight = await Flight.findById(req.params.id);
   const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+
+  // 2) create checkout session
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     success_url: `${req.protocol}://${req.get('host')}/accepted`,
@@ -28,6 +31,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     ],
     mode: 'payment',
   });
+  // Response
   res.status(200).json({
     status: 'success',
     session,
