@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 // Routes
 const flightRouter = require('./routes/flightRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 
 app.use(express.json());
 
+// ROUTES
 app.use('/api/v1/flights', flightRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/tickets', ticketRouter);

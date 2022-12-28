@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const { app } = require("./app");
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const { app } = require('./app');
 
 dotenv.config();
 
 const start = async () => {
-  if (!process.env.DATABASE) throw new Error("MONGO_URI must be defined");
+  if (!process.env.DATABASE) throw new Error('MONGO_URI must be defined');
   try {
     await mongoose.connect(process.env.DATABASE, {
       useNewUrlParser: true,
@@ -13,7 +13,7 @@ const start = async () => {
       useFindAndModify: false,
       useUnifiedTopology: true,
     });
-    console.log("Successfully connected to db");
+    console.log('Successfully connected to db');
   } catch (error) {
     console.log(error);
   }
@@ -21,6 +21,7 @@ const start = async () => {
 
 start();
 
-app.listen(3000, () => {
-  console.log("Listening on port 3000");
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Server live on http://localhost:${port}`);
 });
